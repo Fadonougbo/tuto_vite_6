@@ -1,19 +1,10 @@
 import { createRoot } from "react-dom/client"
-import { Header } from "./Header"
-import { Prompt } from "./Prompt"
-import { AArrowDown,createIcons } from "lucide/"
+import { Main } from "./Main"
 
-createIcons({
-    icons:{
-        AArrowDown
-    }
-})
+
 const App=()=> {
 
-    return <>
-        <Header />
-        <Prompt />
-    </>
-}
+    return <Main />
+}   
  
 createRoot(document.querySelector('#root') as HTMLDivElement).render(<App />)

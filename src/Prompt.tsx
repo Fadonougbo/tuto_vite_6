@@ -1,19 +1,35 @@
+import {Trash2} from "lucide-react"
+import { PromptForm } from "./PromptForm"
+import { type GlobaStateType } from "./Main"
+import { type PropsWithChildren } from "react"
 
-export const  Prompt=()=>{
+
+
+export type PromptFormType=PropsWithChildren<{
+    setGlobalState:React.Dispatch<React.SetStateAction<GlobaStateType>>,
+    responseLoad:boolean
+}>
+
+
+export const  Prompt=({setGlobalState,responseLoad}:PromptFormType)=>{
+
+
   return (
-    <>
-    <form action="#">
-        <div>
-            <input type="text" name="prompt_input" id="prompt_input" />
-        </div>
-        <div>
-            <button></button>
-            <button></button>
-            <button></button>
-            <button></button>
-        </div>
-    </form>
-    <p>Gemini can make mistakes, so double-check it.</p>
-    </>
+    <div className="mt-5" >
+
+        <section className="flex items-center gap-3 sm:px-2 w-full h-auto" >
+
+          <PromptForm setGlobalState={setGlobalState} responseLoad={responseLoad} />
+          
+          <span className="flex justify-center items-center bg-blue-100 rounded-full size-10 sm:size-12 cursor-pointer" >
+            <Trash2 className="size-5" />
+          </span>
+
+        </section>
+
+
+          <p className="my-3 text-gray-700 text-sm sm:text-base text-center" >Gemini can make mistakes, so double-check it.</p>
+
+    </div>
   )
 }
