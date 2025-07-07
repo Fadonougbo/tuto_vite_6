@@ -2,7 +2,7 @@ import geminipic from './images/gemini-color.webp'
 import { ChatMessageType } from './Main'
 
 
-export const  ChatMessageNode=({text,type,responseLoad}:ChatMessageType&{responseLoad:boolean})=>{
+export const  ChatMessageNode=({text,type,responseLoad}:ChatMessageType&{responseLoad?:boolean})=>{
 
   return (
 

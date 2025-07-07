@@ -14,6 +14,16 @@ export type PromptFormType=PropsWithChildren<{
 export const  Prompt=({setGlobalState,responseLoad}:PromptFormType)=>{
 
 
+  const handleClick=()=>{
+    setGlobalState((oldState)=>{
+
+      return {
+        ...oldState,
+        chatStart:false
+      }
+    })
+  }
+
   return (
     <div className="mt-5" >
 
@@ -21,7 +31,7 @@ export const  Prompt=({setGlobalState,responseLoad}:PromptFormType)=>{
 
           <PromptForm setGlobalState={setGlobalState} responseLoad={responseLoad} />
           
-          <span className="flex justify-center items-center bg-blue-100 rounded-full size-10 sm:size-12 cursor-pointer" >
+          <span className="flex justify-center items-center bg-blue-100 rounded-full size-10 sm:size-12 cursor-pointer" onClick={handleClick}>
             <Trash2 className="size-5" />
           </span>
 
