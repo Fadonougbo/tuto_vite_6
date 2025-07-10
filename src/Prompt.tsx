@@ -4,7 +4,7 @@ import type { PromptType } from "./app"
 
 
 
-export const  Prompt=({responseLoad,setAppState}:PromptType)=>{
+export const  Prompt=({responseLoad,chatStatus,setAppState}:PromptType)=>{
 
   const clearMessage=()=>{
 
@@ -26,9 +26,16 @@ export const  Prompt=({responseLoad,setAppState}:PromptType)=>{
 
           <Form setAppState={setAppState} responseLoad={responseLoad} />
           
-          <span className="flex justify-center items-center bg-blue-100 rounded-full size-10 sm:size-12 cursor-pointer" onClick={clearMessage}>
-            <Trash2 className="size-5" />
-          </span>
+          {
+            chatStatus==='start'?
+              <span className="flex justify-center items-center bg-blue-100 rounded-full size-10 sm:size-12 cursor-pointer" onClick={clearMessage}>
+              <Trash2 className="size-5" />
+            </span>:
+              <span className="flex justify-center items-center bg-blue-100 rounded-full size-10 sm:size-12 cursor-pointer" >
+              <Trash2 className="size-5" />
+            </span>
+          }
+          
 
         </section>
 
