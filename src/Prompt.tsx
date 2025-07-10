@@ -1,27 +1,22 @@
 import {Trash2} from "lucide-react"
-import { PromptForm } from "./PromptForm"
-import { type GlobaStateType } from "./Main"
-import { type PropsWithChildren } from "react"
+import { Form } from "./Form"
+import type { PromptType } from "./app"
 
 
 
-export type PromptFormType=PropsWithChildren<{
-    setGlobalState:React.Dispatch<React.SetStateAction<GlobaStateType>>,
-    responseLoad:boolean
-}>
+export const  Prompt=({responseLoad,setAppState}:PromptType)=>{
 
+  const clearMessage=()=>{
 
-export const  Prompt=({setGlobalState,responseLoad}:PromptFormType)=>{
-
-
-  const handleClick=()=>{
-    setGlobalState((oldState)=>{
+    setAppState((oldState)=>{
 
       return {
         ...oldState,
-        chatStart:false
+        chatStatus:"end"
       }
+
     })
+
   }
 
   return (
@@ -29,9 +24,9 @@ export const  Prompt=({setGlobalState,responseLoad}:PromptFormType)=>{
 
         <section className="flex items-center gap-3 sm:px-2 w-full h-auto" >
 
-          <PromptForm setGlobalState={setGlobalState} responseLoad={responseLoad} />
+          <Form setAppState={setAppState} responseLoad={responseLoad} />
           
-          <span className="flex justify-center items-center bg-blue-100 rounded-full size-10 sm:size-12 cursor-pointer" onClick={handleClick}>
+          <span className="flex justify-center items-center bg-blue-100 rounded-full size-10 sm:size-12 cursor-pointer" onClick={clearMessage}>
             <Trash2 className="size-5" />
           </span>
 

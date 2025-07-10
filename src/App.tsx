@@ -6,5 +6,9 @@ const App=()=> {
 
     return <Main />
 }   
- 
-createRoot(document.querySelector('#root') as HTMLDivElement).render(<App />)
+
+const root=document.querySelector('#root')
+
+if(root){
+    createRoot( root).render(<App />)
+}

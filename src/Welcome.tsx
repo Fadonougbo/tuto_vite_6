@@ -1,6 +1,6 @@
 import {PenSquareIcon,Lightbulb, Compass, Code} from "lucide-react"
 
-export const  Header=()=>{
+export const  Welcome=()=>{
 
   return (
     <div className="" >

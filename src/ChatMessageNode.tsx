@@ -1,8 +1,8 @@
+import { ChatMessageNodeType } from './app'
 import geminipic from './images/gemini-color.webp'
-import { ChatMessageType } from './Main'
 
 
-export const  ChatMessageNode=({text,type,responseLoad}:ChatMessageType&{responseLoad?:boolean})=>{
+export const  ChatMessageNode=({message,type,responseLoad}:ChatMessageNodeType)=>{
 
   return (
 
@@ -14,11 +14,11 @@ export const  ChatMessageNode=({text,type,responseLoad}:ChatMessageType&{respons
                 <img src={geminipic} alt="Gemini logo" className={`size-8 ${responseLoad?'animate-bounce':''}`} />
               </span>
               <p className="text-base whitespace-pre-wrap" >
-                  {text.replace(/\*/g,' ')}
+                  {message?.replace(/\*/g,' ')}
               </p>
             </section> :
             <section  className="flex justify-end mr-2 w-full">
-            <p className="bg-blue-100 p-3 rounded max-w-[90%] text-base" >{text}</p>
+            <p className="bg-blue-100 p-3 rounded max-w-[90%] text-base" >{message}</p>
           </section>
           }
         </>
