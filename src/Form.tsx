@@ -3,7 +3,7 @@ import {  useActionState, useState,type ChangeEvent } from "react"
 import type { PromptType } from "./app"
 
 
-const getAIResponse=async (text:string|null,fileinfo?:{mine:string,data:string}):Promise<{isOk:boolean,msg:string}>=>{
+const getAIResponse=async (text:string|null,fileinfo?:{mine:string,data:string}):Promise<{isOk:boolean,msg:string}> => {
 
   if(text===null){
     return {isOk:false,msg:'Une erreur est survenue'}
@@ -31,18 +31,13 @@ const getAIResponse=async (text:string|null,fileinfo?:{mine:string,data:string})
        }
 
     const body={
-              contents:[
-                    {
-                      parts
-                    }
-                  ]
+              question:text
             }
 
-      const response= await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent',{
+      const response= await fetch('https://8e8765db9970.ngrok-free.app/invoke',{
         method:"POST",
         headers:{
-          "Content-Type":"application/json",
-          "X-goog-api-key":import.meta.env.VITE_GEMINI_KEY
+          "Content-Type":"application/json"
         },
         body:JSON.stringify(body)
       })
@@ -53,7 +48,7 @@ const getAIResponse=async (text:string|null,fileinfo?:{mine:string,data:string})
 
       const data=await response.json()
       
-    return {isOk:true,msg:data.candidates[0].content.parts[0].text} 
+    return {isOk:true,msg:data.answer} 
 
   }catch(error){
 
@@ -76,7 +71,6 @@ export const Form=({setAppState,responseLoad}:PromptType)=>{
         const [_,formAction, isPending]=useActionState(async (_:unknown,formdata:FormData)=>{
                      
           const prompt=formdata.get('prompt')?.toString() ?? ''
-
             setAppState((oldState)=>{
               return {
               messages:[...oldState.messages,{message:prompt??'',type:'user'}],
@@ -87,11 +81,13 @@ export const Form=({setAppState,responseLoad}:PromptType)=>{
             })
 
             getAIResponse(prompt,{data:fileData.encodedFile,mine:fileData.mine}).then(({msg})=>{
-                // console.log(msg.toString())
+                 //console.log(msg.toString())
+                 //console.log(msg)
                 setAppState((oldState)=>{
                 return {
                   ...oldState,
-                  chats:[...oldState.messages,{message:msg,type:'ai'}],
+                  
+                  messages:[...oldState.messages,{message:msg,type:'ai'}],
                   responseLoad:false
                 }
               })

@@ -3,7 +3,7 @@ import geminipic from './images/gemini-color.webp'
 
 
 export const  ChatMessageNode=({message,type,responseLoad}:ChatMessageNodeType)=>{
-
+  //console.log(message)
   return (
 
         <>
